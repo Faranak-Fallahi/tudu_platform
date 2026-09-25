@@ -1,4 +1,4 @@
-from .serializers import LogoutSerializer, LoginSerializer,RegisterSerializer
+from .serializers import LogoutSerializer, LoginSerializer, ProfileSerializer,RegisterSerializer
 from rest_framework import generics
 from rest_framework import status
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -35,3 +35,11 @@ class LogoutView(generics.GenericAPIView):
             {"detail": "Successfully logged out."},
             status=status.HTTP_205_RESET_CONTENT,
         )
+        
+        
+class ProfileView(generics.RetrieveUpdateAPIView):
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user.profile
