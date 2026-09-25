@@ -1,7 +1,8 @@
+from .models import User
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
-
-from .models import User
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -24,3 +25,19 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
+    
+    
+class LoginSerializer(TokenObtainPairSerializer):
+    username_field = "phone_number"
+    
+    
+    
+class LogoutSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
+
+    def validate(self, attrs):
+        self.token = RefreshToken(attrs["refresh"])
+        return attrs
+
+    def save(self, **kwargs):
+        self.token.blacklist()
