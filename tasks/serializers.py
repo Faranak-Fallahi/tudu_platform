@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
+        model = Task
         fields = [
             "id",
             "title",
@@ -18,3 +19,6 @@ class TaskSerializer(serializers.ModelSerializer):
             "created_at",
             
         ]    
+        
+        
+   
