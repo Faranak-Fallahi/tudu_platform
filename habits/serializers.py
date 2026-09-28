@@ -38,3 +38,13 @@ class HabitLogSerializer(serializers.ModelSerializer):
             "id",
             "created_at",
         )
+        
+    def validate_habit(self, value):
+        request = self.context["request"]
+
+        if value.user != request.user:
+            raise serializers.ValidationError(
+                "You can only use your own habits."
+            )
+
+        return value

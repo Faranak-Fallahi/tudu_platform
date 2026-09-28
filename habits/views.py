@@ -1,8 +1,8 @@
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+
 from habits.models import Habit, HabitLog
 from habits.serializers import HabitSerializer, HabitLogSerializer
-from rest_framework import viewsets
-from rest_framework.exceptions import PermissionDenied
-from rest_framework.permissions import IsAuthenticated
 
 
 class HabitViewSet(viewsets.ModelViewSet):
@@ -24,15 +24,3 @@ class HabitLogViewSet(viewsets.ModelViewSet):
         return HabitLog.objects.filter(
             habit__user=self.request.user
         )
-
-    def perform_create(self, serializer):
-        habit = serializer.validated_data["habit"]
-
-        if habit.user != self.request.user:
-            
-
-            raise PermissionDenied(
-                "You can only create logs for your own habits."
-            )
-
-        serializer.save()
