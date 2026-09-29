@@ -13,6 +13,8 @@ class HabitSerializer(serializers.ModelSerializer):
             "frequency",
             "start_date",
             "end_date",
+            "target_count",
+            "target_days",
             "is_active",
             "created_at",
             "updated_at",
