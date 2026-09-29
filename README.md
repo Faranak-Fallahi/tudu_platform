@@ -1,5 +1,5 @@
 # Tudu Platform
-
+🇮🇷 [نسخه فارسی](README-fa.md)
 > 🚧 **This project is currently under active development.**
 
 **Tudu Platform** is a personal productivity and planning platform designed to help users organize tasks, habits, goals, and daily activities in one place.
