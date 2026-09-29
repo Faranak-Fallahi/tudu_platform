@@ -1,4 +1,5 @@
 # Tudu Platform
+🇬🇧 [English Version](README.md)
 
 > 🚧 **این پروژه در حال توسعه فعال است.**
 
